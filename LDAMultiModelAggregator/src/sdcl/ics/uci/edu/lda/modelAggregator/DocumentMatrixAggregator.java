@@ -64,8 +64,9 @@ public class DocumentMatrixAggregator {
 		double[][] topicToClass = new double[numTopics][numClasses];
 		for (int i = 0; i < numTopics; i++) {
 			for (int j = 0; j < numClasses; j++) {
-				// BE acereful, the membership matrix is organized by
-				// [classes][clusters], the resulting matrix is organized by
+				// BE careful, the membership matrix is organized by
+				// [classes][clusters], the resulting matrix in the
+				// LightweightTopicModel is organized by
 				// [clusters][classes]
 				topicToClass[i][j] = membership[j][i].averageValue;
 			}

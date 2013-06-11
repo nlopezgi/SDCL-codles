@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sdcl.ics.uci.edu.lda.modelAggregator.ChangeDataAggregator;
+import sdcl.ics.uci.edu.lda.modelAggregator.ChangeSetToTopicMapper;
 import sdcl.ics.uci.edu.lda.modelAggregator.ClassSizesCalculator;
 import sdcl.ics.uci.edu.lda.modelAggregator.DocumentMatrixAggregator;
 import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
@@ -170,9 +171,15 @@ public class MultiModelAggregatorTest {
 			File testTopicModelFileOut = new File(aggregateModelOutPath,
 					MODEL_FILE_PREFIX + j + MODEL_FILE_TYPE);
 
+			// create the topic probability vectors for each change set
+			ChangeSetToTopicMapper.associateChangeSetsToTopics(topicModel);
+
 			// WRITE THE RESULT TO THE OUTPUT FILE. One file is created for each
 			// LightweightTopicModel. This file is later read by the
-			// TopicModelComparer project
+			// TopicModelComparer project.
+
+			// TODO: Still need to write the ChangeSet objects to the csv file
+
 			// Replace with this line to not produce a document matrix
 			// MultiModelWriter.writeToFile(topicModel, testTopicModelFileOut, false);
 			MultiModelWriter.writeToFile(topicModel, testTopicModelFileOut, true);

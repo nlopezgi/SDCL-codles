@@ -32,9 +32,9 @@ public class LightweightTopicModel {
 	 */
 	public int[] originClusterSize;
 	/**
-	 * The topic to terms matrix, for each topic (a cluster which is now
-	 * interpreted as a topic) the terms and their weights (each vector ordered in
-	 * the same way as the terms vector)
+	 * The topic to terms matrix [topicId][termId], for each topic (a cluster
+	 * which is now interpreted as a topic) the terms and their weights (each
+	 * vector ordered in the same way as the terms vector)
 	 */
 	public int[][] topicToTerm;
 	/**
@@ -47,9 +47,10 @@ public class LightweightTopicModel {
 	 */
 	public String[] classNames;
 	/**
-	 * The topic to classNames matrix, for each topic (a cluster which is now
-	 * interpreted as a topic) the probability of being related to this topic
-	 * (each vector ordered in the same way as the classNames vector)
+	 * The topic to classNames matrix [clusterID][classID], for each topic (a
+	 * cluster which is now interpreted as a topic) the probability of being
+	 * related to this topic (each vector ordered in the same way as the
+	 * classNames vector)
 	 */
 	public double[][] topicToClasses;
 

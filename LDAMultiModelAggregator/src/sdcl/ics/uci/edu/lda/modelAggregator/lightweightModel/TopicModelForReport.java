@@ -11,6 +11,13 @@ import sdcl.ics.uci.edu.lda.util.Task;
 import sdcl.ics.uci.edu.lda.util.Term;
 import cc.mallet.topics.ParallelTopicModel;
 
+/**
+ * Heavy full data implementation of a TopicModel. Used only for creating
+ * reports.
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class TopicModelForReport {
 
 	private ParallelTopicModel topicModel;

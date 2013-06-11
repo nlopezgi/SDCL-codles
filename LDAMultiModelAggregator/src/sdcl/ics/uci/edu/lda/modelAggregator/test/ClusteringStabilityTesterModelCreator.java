@@ -10,11 +10,34 @@ import sdcl.ics.uci.edu.taskToTopics.lda.LDAConfiguration;
 import sdcl.ics.uci.edu.taskToTopics.lda.LDAMultiModelGenerator;
 import cc.mallet.topics.ParallelTopicModel;
 
+/**
+ * Test class to validate the stability of the clustering algorithm. This class
+ * simply creates lots of models using the same source files
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class ClusteringStabilityTesterModelCreator {
 
+	// The version # corresponding test directory with the source files for the
+	// test project (Calico in this case)
 	public static int[] calicoTestDirectories = { 1360199283 };
-	public static String modelBasePath = "D:/nlopezgi/devProjects/topicLocation/NewExperimentData/LDAModels/topicsOverTimeModels/calico/multipleTestModels/mutliModelClusteringTest/";
-	public static String srcBasePath = "D:/nlopezgi/devProjects/topicLocation/NewExperimentData/gitProjectRepos/calicoRepos/CalicoClient.git/";
+
+	/**
+	 * Output dir in which multiple consecutive directories (ech a number) will be
+	 * created. Each folder will contain multiple LDA models (10) all generated
+	 * using the same source files
+	 */
+	public static String modelBasePath = MultiModelAggregatorTest.HOME
+			+ "LDAModels/topicsOverTimeModels/calico/multipleTestModels/mutliModelClusteringTest/";
+
+	/**
+	 * Source path for all calico projects (this must contain a folder that
+	 * corresponds to the calicoTestDirectories)
+	 */
+	public static String srcBasePath = MultiModelAggregatorTest.HOME
+			+ "gitProjectRepos/calicoRepos/CalicoClient.git/";
+
 	public static int NUM_TEST_RUNS = 20;
 
 	/**

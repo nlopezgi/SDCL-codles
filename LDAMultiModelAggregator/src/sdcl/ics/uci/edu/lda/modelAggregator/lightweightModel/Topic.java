@@ -12,8 +12,13 @@ import java.util.Set;
 import sdcl.ics.uci.edu.lda.util.ExperimentDataUtil;
 import sdcl.ics.uci.edu.lda.util.Task;
 import sdcl.ics.uci.edu.lda.util.Term;
-import cc.mallet.examples.TopicModel;
 
+/**
+ * Heavy full data implementation of a Topic. Used only for creating reports.
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class Topic implements Comparable<Topic> {
 
 	private static final SimilarityStrategy DEFAULT_STRATEGY = SimilarityStrategy.COSINE_DISTANCE;

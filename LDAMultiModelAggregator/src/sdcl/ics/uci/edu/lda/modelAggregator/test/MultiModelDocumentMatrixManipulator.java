@@ -18,6 +18,14 @@ import sdcl.ics.uci.edu.lda.util.ModuleData;
 import sdcl.ics.uci.edu.lda.util.TopModuleData;
 import cc.mallet.topics.ParallelTopicModel;
 
+/**
+ * Class used to test the stability of the clustering algorithm. This class
+ * dreates a report detailing the classes included in each cluster (tab
+ * separated data to be read using excel). Not currently being maintained
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class MultiModelDocumentMatrixManipulator {
 
 	static String modelBasePath = ClusteringStabilityTesterModelCreator.modelBasePath;

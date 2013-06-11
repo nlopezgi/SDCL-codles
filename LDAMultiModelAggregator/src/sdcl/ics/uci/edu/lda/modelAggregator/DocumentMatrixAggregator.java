@@ -10,6 +10,14 @@ import sdcl.ics.uci.edu.lda.util.ModuleData;
 import sdcl.ics.uci.edu.lda.util.TopModuleData;
 import cc.mallet.topics.ParallelTopicModel;
 
+/**
+ * Aggregates a set of document matrices, each from a different LDA model that
+ * is clustered using the MultiModelAggregator. The result is stored in the
+ * LightweightTopicModel objects
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class DocumentMatrixAggregator {
 
 	public static final double PROB_THRESHOLD_FOR_RELATED_CLASSES = 0.01;
@@ -17,42 +25,78 @@ public class DocumentMatrixAggregator {
 	int numClasses;
 	String[] classNames;
 
+	/**
+	 * Main functionality for this class. Aggregates a set of models using the
+	 * MultiModelAggregator (term similarity based HAC)
+	 * 
+	 * @param models
+	 * @param numTopics
+	 * @param srcRootDir
+	 * @return
+	 * @throws Exception
+	 */
 	public LightweightTopicModel aggregateModels(List<ParallelTopicModel> models,
 			int numTopics, String srcRootDir) throws Exception {
+		// Aggregate the models using the HAC clustering
 		MultiModelAggregator mma = new MultiModelAggregator();
 		LightweightTopicModel topicModel = mma.aggregateModels(models, numTopics,
 				false, true);
+		// Load all class-topic vectors into a single large cube
 		double[][][] modelToTopicToClassProbability = loadClassVectors(models,
 				srcRootDir, numTopics);
+		// Create the membership matrix for each cluster found by the
+		// MultiModelAggregator. First index is class name, second index is
+		// membership to a given cluster
 		ClusterClassMembership[][] membership = createClusterClassMembership(
 				modelToTopicToClassProbability, classNames, classNames.length,
 				topicModel, models.size(), numTopics);
 		topicModel.classNames = classNames;
+
+		// Store the info in the LighweightTopicModel
 		createAggregateTopicToClassMatrix(topicModel, membership);
 		return topicModel;
 	}
 
-	public void createAggregateTopicToClassMatrix(
+	private void createAggregateTopicToClassMatrix(
 			LightweightTopicModel topicModel, ClusterClassMembership[][] membership) {
 		int numTopics = topicModel.getSelectedClusters().length;
 		int numClasses = topicModel.classNames.length;
 		double[][] topicToClass = new double[numTopics][numClasses];
 		for (int i = 0; i < numTopics; i++) {
 			for (int j = 0; j < numClasses; j++) {
-				// BE acereful, the membership matrix is organized by [classes][clusters], the resulting matrix is organized by [clusters][classes]
+				// BE acereful, the membership matrix is organized by
+				// [classes][clusters], the resulting matrix is organized by
+				// [clusters][classes]
 				topicToClass[i][j] = membership[j][i].averageValue;
 			}
 		}
 		topicModel.topicToClasses = topicToClass;
 	}
 
-	public double[][][] loadClassVectors(final List<ParallelTopicModel> models,
+	/**
+	 * Loads all document vectors for all the models into a cube (the return) the
+	 * first index of the cube is the model number (a consecutive number) the
+	 * second index corresponds to the topics and the third to classes. This
+	 * method also loads the classNames vector in the process. The last index of
+	 * the cube matches to classes stored in the className vector. Please note
+	 * that the ParallelTopicModels MUST have been created using the EXACT SAME
+	 * files as in the srcRootDir
+	 * 
+	 * @param models
+	 *          set of models created using the same code files
+	 * @param srcRootDir
+	 *          the root directory for all these source files
+	 * @param numTopics
+	 * @return
+	 * @throws Exception
+	 */
+	private double[][][] loadClassVectors(final List<ParallelTopicModel> models,
 			String srcRootDir, int numTopics) throws Exception {
 
-		// / START UP ALL OBJECTS FOR REPORT
-		// Stores the info regarding source files
+		// Stores the info regarding source files in a ModuleData object
 		ModuleData moduleData = createModuleData(srcRootDir);
 		((TopModuleData) moduleData).addTopModuleSourceFolder(srcRootDir);
+		// get all the file names
 		List<String> classNamesList = moduleData.getFileNames();
 		numClasses = classNamesList.size();
 		String[] classNamesArray = new String[classNamesList.size()];
@@ -62,6 +106,8 @@ public class DocumentMatrixAggregator {
 			y++;
 		}
 		classNames = classNamesArray;
+		// for each of the models, load its probability matrix into one row of the
+		// cube
 		double[][][] modelToTopicToClassProbability = new double[models.size()][numTopics][classNamesArray.length];
 		for (int i = 0; i < models.size(); i++) {
 			for (int z = 0; z < classNamesArray.length; z++) {
@@ -94,7 +140,7 @@ public class DocumentMatrixAggregator {
 	 * @param numTopics
 	 * @return
 	 */
-	public ClusterClassMembership[][] createClusterClassMembership(
+	private ClusterClassMembership[][] createClusterClassMembership(
 			double[][][] modelToTopicToClassProbability, String[] classNames,
 			int numClasses, LightweightTopicModel topicModel, int numModels,
 			int numTopics) {
@@ -115,9 +161,7 @@ public class DocumentMatrixAggregator {
 					// its the last one, corresponds to pruned topics
 					calculatePrunedTopicsCluster(topicModel, numModels, numTopics);
 					cluster = topicModel.prunedTopicsCluster;
-
 				}
-
 				double totalProb = 0;
 				int totalTopics = 0;
 				for (TopicRef ref : cluster.getTopics()) {
@@ -154,6 +198,17 @@ public class DocumentMatrixAggregator {
 		return membershipMatrix;
 	}
 
+	/**
+	 * Creates a cluster that aggregates all topics that were not included in any
+	 * other cluster. These are the 'trash' topics that were not consistently
+	 * present in every run of LDA. We just create it for now to not lose any
+	 * info, but I still do not know what is the purpose of storing this.
+	 * 
+	 * @param topicModel
+	 * @param numModels
+	 * @param numTopics
+	 * @return
+	 */
 	public Cluster calculatePrunedTopicsCluster(LightweightTopicModel topicModel,
 			int numModels, int numTopics) {
 		if (topicModel.prunedTopicsCluster == null) {

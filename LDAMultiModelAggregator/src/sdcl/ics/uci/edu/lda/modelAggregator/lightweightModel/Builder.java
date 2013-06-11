@@ -10,7 +10,7 @@ import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
 import cc.mallet.topics.ParallelTopicModel;
 
 /**
- * Builds a lightweight model with the given set of ParallelTopicModel
+ * Builds a lightweight model with the given set of ParallelTopicModel. Used only by the MultiModelAggregator
  * 
  * @author nlopezgi
  * 

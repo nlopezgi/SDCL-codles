@@ -4,7 +4,7 @@ import java.util.Collection;
 
 /**
  * Calculates KL divergence between two term vectors (vectors with probabilities
- * for each term)
+ * for each term). Note that this is a simmetric version of the KL divergence.
  * 
  * @author nlopezgi
  * 
@@ -12,9 +12,9 @@ import java.util.Collection;
 public class KLDivergenceCalculator {
 
 	/**
-	 * Constant for KL divergence algorithm. THe algorithm fails miserably
-	 * whenever any probability in a vector =0. To compensate (and references
-	 * online support this approach) we set all =0 probs to the
+	 * Constant for KL divergence algorithm. The algorithm fails miserably
+	 * whenever any probability in a vector = 0. To compensate (and references
+	 * online support this approach) we set all = 0 probs to the
 	 * MIN_PROBABILITY_VALUE. TO compensate for sum of probability>1 we also
 	 * remove these marginal probabilities from any non zero probability in the
 	 * vector (see KL divergence method for more info)
@@ -51,18 +51,6 @@ public class KLDivergenceCalculator {
 		int nonZeroFromAnother = 0;
 
 		int i = 0;
-
-		// String vec1 = new String("[");
-		// String vec2 = new String("[");
-		// for (i = 0; i < vectorLength; i++) {
-		// vec1 = vec1 + oneTopicTermVector[i] + "|";
-		// vec2 = vec2 + anotherTopicTermVector[i] + "|";
-		// }
-		// vec1 = vec1 + "]";
-		// vec2 = vec2 + "]";
-		// System.out.println("Comparing:");
-		// System.out.println("vec1:" + vec1);
-		// System.out.println("vec2:" + vec2);
 
 		// We need to count how many terms are present in one but not in another
 		for (i = 0; i < vectorLength; i++) {
@@ -111,7 +99,7 @@ public class KLDivergenceCalculator {
 				double log2 = Math.log(anotherTopicTermVector[i]
 						/ oneTopicTermVector[i])
 						/ Math.log(2);
-				// sum += (oneTopicVector[i] - anotherTopicVector[i]) * log;
+
 				sum += oneTopicTermVector[i] * log;
 				sum2 += anotherTopicTermVector[i] * log2;
 			}

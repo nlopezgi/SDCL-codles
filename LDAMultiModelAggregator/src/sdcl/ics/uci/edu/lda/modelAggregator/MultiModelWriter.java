@@ -8,7 +8,7 @@ import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicMod
 
 /**
  * Writes a LighweightTopicModel object to a csv file. See @MultiModelReader in
- * project TopicModelComparer
+ * project TopicModelComparer as both files must match
  * 
  * @author nlopezgi
  * 

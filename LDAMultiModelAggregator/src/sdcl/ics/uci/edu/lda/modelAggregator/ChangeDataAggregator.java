@@ -16,7 +16,10 @@ import sdcl.uci.edu.lda.commitLogReader.CommitLogReader;
 
 /**
  * Reads data from a commit log file using the CommitLogReader. Associates all
- * changes with the appropriate model. Each change is stored
+ * changes with the appropriate model. Each change is stored (After the
+ * associateModelToChanges method is called) as a ChangeSet object in the
+ * appropriate LighweightTopicModel.
+ 
  * 
  * @author nlopezgi
  * 

@@ -1,5 +1,12 @@
 package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel;
 
+/**
+ * Heavy full data implementation of a Topic to Class asociation. Used only for
+ * creating reports.
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class TopicClass implements Comparable<TopicClass> {
 
 	private String className;

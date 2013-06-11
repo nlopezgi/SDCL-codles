@@ -7,7 +7,7 @@ import sdcl.ics.uci.edu.lda.util.ModuleData;
 import sdcl.ics.uci.edu.lda.util.TopModuleData;
 
 /**
- * Calculates the sizes of all classes and adds the information to the
+ * Calculates the sizes of all classes (LOCs) and adds the information to the
  * lightweightTopicModel
  * 
  * @author nlopezgi

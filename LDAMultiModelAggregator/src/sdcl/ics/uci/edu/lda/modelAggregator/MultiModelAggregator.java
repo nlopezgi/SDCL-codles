@@ -12,6 +12,14 @@ import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicMod
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.MultiTopicModel;
 import cc.mallet.topics.ParallelTopicModel;
 
+/**
+ * Main class that performs the aggregation of multiple models created using the
+ * same document corpus. The clustering is currently using only the terms in the
+ * topics, so it is generic for any type of corpus.
+ * 
+ * @author nlopezgi
+ * 
+ */
 public class MultiModelAggregator {
 
 	public static final int NUM_TERMS = 20;
@@ -140,7 +148,8 @@ public class MultiModelAggregator {
 	/**
 	 * Creates a list of lightweight topic models using the given
 	 * ParallelTopicModels. These lightweight models only contain a topic to word
-	 * matrix for clustering purposes
+	 * matrix for clustering purposes. The purpose of these models is to have
+	 * matrices and vectors that are quick to access, compare and operate over.
 	 * 
 	 * @param models
 	 * @return
@@ -777,8 +786,6 @@ public class MultiModelAggregator {
 			return false;
 		}
 	}
-
-	
 
 	private static class HACIterationObject {
 		public double[][] divergenceMatrix;

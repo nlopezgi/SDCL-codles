@@ -10,7 +10,8 @@ import sdcl.ics.uci.edu.lda.modelAggregator.ClassSizesCalculator;
 import sdcl.ics.uci.edu.lda.modelAggregator.DocumentMatrixAggregator;
 import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
 import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelWriter;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.SerializableModelWriterReader;
 import sdcl.ics.uci.edu.lda.util.ExperimentDataUtil;
 import sdcl.ics.uci.edu.lda.util.ModelFileUtil;
 import sdcl.ics.uci.edu.taskToTopics.lda.LDAConfiguration;
@@ -79,7 +80,7 @@ public class MultiModelAggregatorTest {
 	static int numTopics = 15;
 
 	private static final String MODEL_FILE_PREFIX = "testAggregateModel";
-	private static final String MODEL_FILE_TYPE = ".csv";
+	private static final String MODEL_FILE_TYPE = ".ser";// ".csv";
 	private static final String DOC_MATRIX_SUFFIX = "-DocMatrix";
 
 	/**
@@ -179,15 +180,19 @@ public class MultiModelAggregatorTest {
 			// TopicModelComparer project.
 
 			// TODO: Still need to write the ChangeSet objects to the csv file
+			String filename = aggregateModelOutPath + ExperimentDataUtil.SEPARATOR
+					+ "SERIAL-" + MODEL_FILE_PREFIX + j + MODEL_FILE_TYPE;
+
+			SerializableModelWriterReader.writeToFile(filename, topicModel);
 
 			// Replace with this line to not produce a document matrix
 			// MultiModelWriter.writeToFile(topicModel, testTopicModelFileOut, false);
-			MultiModelWriter.writeToFile(topicModel, testTopicModelFileOut, true);
-			File testTopicDocMatrixModelFileOut = new File(aggregateModelOutPath,
-					MODEL_FILE_PREFIX + DOC_MATRIX_SUFFIX + j + MODEL_FILE_TYPE);
-
-			MultiModelWriter.writeDocumentMatrixToFile(topicModel,
-					testTopicDocMatrixModelFileOut);
+			// MultiModelWriter.writeToFile(topicModel, testTopicModelFileOut, true);
+			// File testTopicDocMatrixModelFileOut = new File(aggregateModelOutPath,
+			// MODEL_FILE_PREFIX + DOC_MATRIX_SUFFIX + j + MODEL_FILE_TYPE);
+			//
+			// MultiModelWriter.writeDocumentMatrixToFile(topicModel,
+			// testTopicDocMatrixModelFileOut);
 		}
 	}
 

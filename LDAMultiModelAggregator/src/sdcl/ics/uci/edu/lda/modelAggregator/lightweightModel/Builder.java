@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
 import cc.mallet.topics.ParallelTopicModel;
 
 /**

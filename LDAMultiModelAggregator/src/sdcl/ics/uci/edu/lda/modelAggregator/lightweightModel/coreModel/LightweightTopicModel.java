@@ -1,9 +1,8 @@
-package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel;
+package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
 
 /**
  * Class that stores a minimal model resulting from aggregating several LDA
@@ -15,7 +14,14 @@ import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
  * @author nlopezgi
  * 
  */
-public class LightweightTopicModel {
+public class LightweightTopicModel implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5292548351281696706L;
+
+	public static final int MIN_CLUSTER_SIZE = 4;
 
 	public long snapshotTime;
 	/**
@@ -87,7 +93,7 @@ public class LightweightTopicModel {
 		if (selectedClusters == null) {
 			List<Cluster> selected = new ArrayList<Cluster>();
 			for (int i = 0; i < clusters.length; i++) {
-				if (clusters[i].getTopics().size() > MultiModelAggregator.MIN_CLUSTER_SIZE) {
+				if (clusters[i].getTopics().size() > MIN_CLUSTER_SIZE) {
 					selected.add(clusters[i]);
 				}
 			}

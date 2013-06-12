@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator;
-import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator.TopicRef;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.Cluster;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.Topic;
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.TopicClass;
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.TopicModelForReport;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.Cluster;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.TopicRef;
 import sdcl.ics.uci.edu.lda.util.ExperimentDataUtil;
 import sdcl.ics.uci.edu.lda.util.ModelFileUtil;
 import sdcl.ics.uci.edu.lda.util.ModuleData;

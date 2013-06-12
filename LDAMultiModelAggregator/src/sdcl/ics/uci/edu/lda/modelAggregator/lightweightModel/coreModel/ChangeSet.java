@@ -1,4 +1,6 @@
-package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel;
+package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel;
+
+import java.io.Serializable;
 
 /**
  * A set of changes committed in a single operation. This object should be
@@ -7,7 +9,13 @@ package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel;
  * @author nlopezgi
  * 
  */
-public class ChangeSet {
+public class ChangeSet implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1165847666299161196L;
+
 	public String id;
 	public FileChange[] changes;
 	/**
@@ -24,7 +32,12 @@ public class ChangeSet {
 	 * @author nlopezgi
 	 * 
 	 */
-	public static class FileChange {
+	public static class FileChange implements Serializable {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3117446598186387759L;
 		/**
 		 * The id of the class (matches index of class in the LightweightTopicModel
 		 * that contains this change

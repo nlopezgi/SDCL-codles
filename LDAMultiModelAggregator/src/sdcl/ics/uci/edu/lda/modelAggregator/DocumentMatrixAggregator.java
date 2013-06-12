@@ -3,9 +3,9 @@ package sdcl.ics.uci.edu.lda.modelAggregator;
 import java.util.ArrayList;
 import java.util.List;
 
-import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator.TopicRef;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.Cluster;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.Cluster;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.TopicRef;
 import sdcl.ics.uci.edu.lda.util.ModuleData;
 import sdcl.ics.uci.edu.lda.util.TopModuleData;
 import cc.mallet.topics.ParallelTopicModel;

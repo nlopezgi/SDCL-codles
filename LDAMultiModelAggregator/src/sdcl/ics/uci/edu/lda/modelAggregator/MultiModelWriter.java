@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
 
 /**
  * Writes a LighweightTopicModel object to a csv file. See @MultiModelReader in

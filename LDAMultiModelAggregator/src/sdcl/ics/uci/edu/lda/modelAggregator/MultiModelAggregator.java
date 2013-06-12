@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.Builder;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.Cluster;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
 import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.MultiTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.Cluster;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.TopicRef;
 import cc.mallet.topics.ParallelTopicModel;
 
 /**
@@ -760,32 +761,7 @@ public class MultiModelAggregator {
 	 * ------------------HELPER CLASSES----------------------
 	 */
 
-	/**
-	 * Reference from a pair of topics to their index in the big divergence matrix
-	 * 
-	 * @author nlopezgi
-	 * 
-	 */
-	public static class TopicRef {
-		public TopicRef(int model, int topic, int bigMatrixIndex) {
-			super();
-			this.model = model;
-			this.topic = topic;
-			this.bigMatrixIndex = bigMatrixIndex;
-		}
-
-		public final int model;
-		public final int topic;
-		public final int bigMatrixIndex;
-
-		public boolean equals(Object other) {
-			if (other instanceof TopicRef) {
-				return model == ((TopicRef) other).model
-						&& topic == ((TopicRef) other).topic;
-			}
-			return false;
-		}
-	}
+	
 
 	private static class HACIterationObject {
 		public double[][] divergenceMatrix;

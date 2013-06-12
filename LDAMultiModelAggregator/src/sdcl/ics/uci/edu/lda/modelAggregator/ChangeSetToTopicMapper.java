@@ -3,8 +3,8 @@ package sdcl.ics.uci.edu.lda.modelAggregator;
 import java.util.ArrayList;
 import java.util.List;
 
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.ChangeSet;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.ChangeSet;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
 
 /**
  * Associates each ChangeSet with the topics that best characterize all classes

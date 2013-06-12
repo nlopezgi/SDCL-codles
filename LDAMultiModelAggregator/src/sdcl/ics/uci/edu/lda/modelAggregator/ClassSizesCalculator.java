@@ -2,7 +2,7 @@ package sdcl.ics.uci.edu.lda.modelAggregator;
 
 import java.util.List;
 
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
 import sdcl.ics.uci.edu.lda.util.ModuleData;
 import sdcl.ics.uci.edu.lda.util.TopModuleData;
 

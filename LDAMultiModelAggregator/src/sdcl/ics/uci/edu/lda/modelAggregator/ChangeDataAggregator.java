@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.ChangeSet;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.ChangeSet.FileChange;
-import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.ChangeSet;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.LightweightTopicModel;
+import sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel.ChangeSet.FileChange;
 import sdcl.uci.edu.lda.commitLogReader.CommitLogData;
 import sdcl.uci.edu.lda.commitLogReader.CommitLogData.ClassChange;
 import sdcl.uci.edu.lda.commitLogReader.CommitLogReader;

@@ -1,9 +1,8 @@
-package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel;
+package sdcl.ics.uci.edu.lda.modelAggregator.lightweightModel.coreModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator.TopicRef;
 
 /**
  * a simple cluster object pointing to topic references and to other collapsed
@@ -13,7 +12,12 @@ import sdcl.ics.uci.edu.lda.modelAggregator.MultiModelAggregator.TopicRef;
  * @author nlopezgi
  * 
  */
-public class Cluster implements Comparable<Cluster> {
+public class Cluster implements Comparable<Cluster>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7730419533572624574L;
+	
 	public List<TopicRef> topics = new ArrayList<TopicRef>();
 	public List<Cluster> collapsedClusters = new ArrayList<Cluster>();
 	public double averageDivergenceFromCentroid;

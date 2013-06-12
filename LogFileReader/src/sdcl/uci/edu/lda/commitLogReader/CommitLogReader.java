@@ -22,6 +22,8 @@ public class CommitLogReader {
 	public static final String AUTHOR_TOKEN = "Author:";
 	public static final String FILE_TOKEN = "...";
 	public static final String JAVA_FILE_TOKEN = ".java";
+	public static final String SVN_FILE_IGNORE = ".java.svn-base";
+	public static final String SRC_TRIM_TOKEN = "src.";
 	public static final String COMMIT_LOG_DIR = "commitLogs";
 	public static final String SEPARATOR = "/";
 	public static final int MIN_COMMIT_SIZE = 2;
@@ -175,7 +177,9 @@ public class CommitLogReader {
 					}
 				}
 			}
-			if (strLine.contains(FILE_TOKEN) && strLine.contains(JAVA_FILE_TOKEN)) {
+			if (strLine.contains(FILE_TOKEN)
+					&& (strLine.contains(JAVA_FILE_TOKEN) && !strLine
+							.contains(SVN_FILE_IGNORE))) {
 				String oneFile = strLine.substring(strLine.indexOf(FILE_TOKEN)
 						+ FILE_TOKEN.length(), strLine.indexOf(JAVA_FILE_TOKEN));
 				oneFile = oneFile.replace("/", ".");
@@ -183,8 +187,8 @@ public class CommitLogReader {
 					oneFile = oneFile.substring(1);
 
 				}
-				if (oneFile.startsWith("src.")) {
-					oneFile = oneFile.substring(4);
+				if (oneFile.contains(SRC_TRIM_TOKEN)) {
+					oneFile = oneFile.substring(oneFile.indexOf(SRC_TRIM_TOKEN) + 4);
 
 				}
 				oneCommit.addFile(oneFile);

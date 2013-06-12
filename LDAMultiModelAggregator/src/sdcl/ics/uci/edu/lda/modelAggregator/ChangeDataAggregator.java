@@ -19,7 +19,7 @@ import sdcl.uci.edu.lda.commitLogReader.CommitLogReader;
  * changes with the appropriate model. Each change is stored (After the
  * associateModelToChanges method is called) as a ChangeSet object in the
  * appropriate LighweightTopicModel.
- 
+ * 
  * 
  * @author nlopezgi
  * 
@@ -137,6 +137,19 @@ public class ChangeDataAggregator {
 						oneChange.id = getIdForClass(model, change.className);
 						fileChanges[i] = oneChange;
 						i++;
+						if (oneChange.id == -1) {
+							System.err
+									.println("could not process one change, there's something funky in your commit logs: File "
+											+ change.className
+											+ " could not be found in version "
+											+ version
+											+ "("
+											+ new Date(version * 1000)
+											+ ")"
+											+ ", yet it is referenced in commit log with id:"
+											+ oneChangeSet.id + " from " + oneLog.getDate());
+
+						}
 					}
 					oneChangeSet.changes = fileChanges;
 					allChangeSets[changeIndex] = oneChangeSet;

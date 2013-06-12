@@ -36,8 +36,10 @@ public class ChangeSetToTopicMapper {
 
 			double[] topicProbabilities = new double[numTopics];
 			for (int j = 0; j < oneChange.changes.length; j++) {
-				for (int z = 0; z < numTopics; z++) {
-					topicProbabilities[z] += model.topicToClasses[z][oneChange.changes[j].id];
+				if (oneChange.changes[j].id != -1) {
+					for (int z = 0; z < numTopics; z++) {
+						topicProbabilities[z] += model.topicToClasses[z][oneChange.changes[j].id];
+					}
 				}
 			}
 			int topicsOrderedByProbability[] = new int[numTopics];

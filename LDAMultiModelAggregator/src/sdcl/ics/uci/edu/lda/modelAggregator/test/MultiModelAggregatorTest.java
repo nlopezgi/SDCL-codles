@@ -182,7 +182,8 @@ public class MultiModelAggregatorTest {
 			// TODO: Still need to write the ChangeSet objects to the csv file
 			String filename = aggregateModelOutPath + ExperimentDataUtil.SEPARATOR
 					+ "SERIAL-" + MODEL_FILE_PREFIX + j + MODEL_FILE_TYPE;
-
+			System.out.println("Writing serializable LightweightTopicModel to:"
+					+ filename);
 			SerializableModelWriterReader.writeToFile(filename, topicModel);
 
 			// Replace with this line to not produce a document matrix

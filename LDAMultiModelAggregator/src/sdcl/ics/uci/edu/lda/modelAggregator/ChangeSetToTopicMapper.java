@@ -46,9 +46,9 @@ public class ChangeSetToTopicMapper {
 			double probabilitiesOrdered[] = new double[numTopics];
 			int resultIndex = 0;
 			int orderedTopics = 0;
-			double maxProb = 0;
+			double maxProb = -1;
 			int maxProbIndex = -1;
-			while (orderedTopics < numTopics) {
+			while (orderedTopics < numTopics && maxProb != 0) {
 				for (int z = 0; z < numTopics; z++) {
 					if (maxProb < topicProbabilities[z]) {
 						maxProb = topicProbabilities[z];
